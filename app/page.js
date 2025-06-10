@@ -16,7 +16,7 @@ export default function Home() {
       <main className="font-inter flex-1 flex items-center px-8 sm:px-12 pb-32">
         <div className="max-w-7xl space-y-10 sm:space-y-12">
           <h1 className="text-5xl sm:text-6xl font-light leading-relaxed animate__animated animate__fadeInUp">
-            Hi, I'm Dylan Wang.
+            Hi, I&apos;m Dylan Wang.
           </h1>
 
           <div className="max-w-7xl space-y-8 text-xl sm:text-2xl font-light leading-relaxed text-gray-200">
