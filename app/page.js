@@ -24,7 +24,7 @@ export default function Home() {
               Currently working on the Common Platform Team at Fidelity Investments as a Software Engineer Intern.
             </p>
             <p className="animate__animated animate__fadeInUp animate__delay-2s">
-              Previously optimized medical imaging pipelines at UMass Lowell and tested firmware at Charm Sciences.
+              Previously worked on medical image segmentation at the University of Massachusetts Lowell and tested firmware at Charm Sciences.
             </p>
             <p className="animate__animated animate__fadeInUp animate__delay-3s">
               Building Teach and Serve (200+ Sign ups) and Lightbulb (50+ users).
