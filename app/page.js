@@ -21,16 +21,62 @@ export default function Home() {
 
           <div className="max-w-7xl space-y-8 text-xl sm:text-2xl font-light leading-relaxed text-gray-200">
             <p className="animate__animated animate__fadeInUp animate__delay-1s">
-              Currently working on the Common Platform Team at Fidelity Investments as a Software Engineer Intern.
+              Currently working on the Common Platform Team at{' '}
+                <a 
+                href="https://www.linkedin.com/company/fidelity-investments/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-100 hover:text-white border-b border-gray-600 hover:border-gray-400 transition-all duration-200"
+              >
+                Fidelity Investments
+              </a>
+              {' '}
+               as a Software Engineer Intern.
             </p>
             <p className="animate__animated animate__fadeInUp animate__delay-2s">
-              Previously worked on medical image segmentation at the University of Massachusetts Lowell and tested firmware at Charm Sciences.
+              Previously worked on medical image segmentation at the{' '}
+                <a 
+                href="https://www.linkedin.com/school/university-of-massachusetts-lowell/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-100 hover:text-white border-b border-gray-600 hover:border-gray-400 transition-all duration-200"
+              >
+                University of Massachusetts Lowell
+              </a>
+              {' '}and tested firmware at{' '}
+                <a 
+                href="https://www.linkedin.com/company/charm-sciences-inc./"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-100 hover:text-white border-b border-gray-600 hover:border-gray-400 transition-all duration-200"
+              >
+                Charm Sciences
+              </a>
+              {' '}.
             </p>
             <p className="animate__animated animate__fadeInUp animate__delay-3s">
-              Building Teach and Serve (200+ Sign ups) and Lightbulb (50+ users).
+              Building Teach & Serve (200+ Sign ups) and{' '}
+                <a 
+                href="https://uselightbulb.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-100 hover:text-white border-b border-gray-600 hover:border-gray-400 transition-all duration-200"
+              >
+                Lightbulb
+              </a>
+              {' '}(50+ users).
             </p>
             <p className="animate__animated animate__fadeInUp animate__delay-4s">
-              Senior Computer Engineering Student at the University of Massachusetts Amherst.
+              Senior Computer Engineering Student at the{' '}
+                <a 
+                href="https://www.linkedin.com/school/university-of-massachusetts-amherst/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-100 hover:text-white border-b border-gray-600 hover:border-gray-400 transition-all duration-200"
+              >
+                University of Massachusetts Amherst
+              </a>
+              {' '}.
             </p>
             <p className="animate__animated animate__fadeInUp animate__delay-5s">
               Sentinels Fan.
