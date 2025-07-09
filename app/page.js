@@ -34,7 +34,7 @@ export default function Home() {
                as a Software Engineer Intern.
             </p>
             <p className="animate__animated animate__fadeInUp animate__delay-2s">
-              Previously worked on medical image segmentation at the{' '}
+              Previously worked on ML Research at the{' '}
                 <a 
                 href="https://www.linkedin.com/school/university-of-massachusetts-lowell/"
                 target="_blank"
@@ -43,7 +43,7 @@ export default function Home() {
               >
                 University of Massachusetts Lowell
               </a>
-              {' '}and tested firmware at{' '}
+              {' '}and implemented testing and automation at{' '}
                 <a 
                 href="https://www.linkedin.com/company/charm-sciences-inc./"
                 target="_blank"
@@ -55,7 +55,7 @@ export default function Home() {
               {' '}.
             </p>
             <p className="animate__animated animate__fadeInUp animate__delay-3s">
-              Building Teach & Serve (200+ Sign ups) and{' '}
+              Building Teach & Serve (500+ Sign ups) and constantly updating{' '}
                 <a 
                 href="https://uselightbulb.vercel.app/"
                 target="_blank"
@@ -67,7 +67,7 @@ export default function Home() {
               {' '}(50+ users).
             </p>
             <p className="animate__animated animate__fadeInUp animate__delay-4s">
-              Senior Computer Engineering Student at the{' '}
+              Computer Engineering Student at the{' '}
                 <a 
                 href="https://www.linkedin.com/school/university-of-massachusetts-amherst/"
                 target="_blank"
@@ -79,7 +79,7 @@ export default function Home() {
               {' '}.
             </p>
             <p className="animate__animated animate__fadeInUp animate__delay-5s">
-              Sentinels Fan.
+              Avid fan of groundhogs.
             </p>
           </div>
         </div>

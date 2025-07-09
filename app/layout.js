@@ -1,11 +1,5 @@
-import { Merriweather_Sans } from "next/font/google";
 import "./globals.css";
 import { icon } from "@fortawesome/fontawesome-svg-core";
-
-const merriweatherSans = Merriweather_Sans({
-  variable: "--font-merriweather-sans",
-  subsets: ["latin"],
-});
 
 export const metadata = {
   title: "Dylan Wang",
@@ -16,7 +10,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${merriweatherSans.variable} font-merriweather-sans antialiased`}>
+      <body className="antialiased">
         {children}
       </body>
     </html>
