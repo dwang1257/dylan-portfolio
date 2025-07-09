@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Favicon Converter</title>
+</head>
+<body>
+    <canvas id="canvas" width="32" height="32" style="display:none;"></canvas>
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Create a light gray circle
+        ctx.fillStyle = '#D3D3D3';
+        ctx.beginPath();
+        ctx.arc(16, 16, 16, 0, 2 * Math.PI);
+        ctx.fill();
+        
+        // Convert to data URL
+        const dataURL = canvas.toDataURL('image/png');
+        console.log('PNG Data URL:', dataURL);
+        
+        // You can download this as favicon.ico
+        const link = document.createElement('a');
+        link.download = 'favicon.png';
+        link.href = dataURL;
+        link.click();
+    </script>
+</body>
+</html> 

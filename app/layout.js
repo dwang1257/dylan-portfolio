@@ -1,9 +1,9 @@
-import { Inter } from "next/font/google";
+import { Merriweather_Sans } from "next/font/google";
 import "./globals.css";
 import { icon } from "@fortawesome/fontawesome-svg-core";
 
-const inter = Inter({
-  variable: "--font-inter",
+const merriweatherSans = Merriweather_Sans({
+  variable: "--font-merriweather-sans",
   subsets: ["latin"],
 });
 
@@ -16,7 +16,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} font-inter antialiased`}>
+      <body className={`${merriweatherSans.variable} font-merriweather-sans antialiased`}>
         {children}
       </body>
     </html>
