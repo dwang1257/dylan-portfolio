@@ -15,9 +15,6 @@ export default function Home() {
       {/* Main Content */}
       <main className="font-inter flex-1 flex items-center px-8 sm:px-12 pb-32">
         <div className="max-w-7xl space-y-10 sm:space-y-12">
-          {/* <h1 className="text-xl sm:text-2xl font-normal leading-relaxed animate__animated animate__fadeInUp">
-            Hi, I&apos;m Dylan Wang.
-          </h1> */}
 
           <div className="max-w-7xl space-y-8 text-xl sm:text-2xl font-semibold leading-relaxed text-gray-200">
             <p className="animate__animated animate__fadeInUp animate__delay-0s">
@@ -118,9 +115,11 @@ export default function Home() {
               <Linkedin size={24} />
             </a>
             <a
-              href=""
+              href="/DylanWangResume.pdf"
               className="text-gray-400 hover:text-white transition-colors duration-200"
               aria-label="Resume"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <FileText size={24} />
             </a>
