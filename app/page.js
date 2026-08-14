@@ -1,13 +1,17 @@
 import 'animate.css';
 import { Github, Mail, Linkedin, FileText } from 'lucide-react';
 
+// TODO: Cache Components adoption. Refactor this route so this opt-out can be removed.
+// See: https://nextjs.org/docs/app/guides/migrating-to-cache-components
+export const instant = false;
+
 export default function Home() {
   return (
     <div className="font-inter min-h-screen bg-black text-white flex flex-col">
       {/* Header */}
       <header className="p-8 sm:p-12">
         <div className="absolute top-8 right-8 sm:top-12 sm:right-12 text-gray-400 text-base sm:text-lg">
-          © 2025
+          © {new Date().getFullYear()}
         </div>
       </header>
 
@@ -16,9 +20,9 @@ export default function Home() {
         <div className="max-w-7xl space-y-10 sm:space-y-12">
 
           <div className="max-w-7xl space-y-8 text-xl sm:text-2xl font-semibold leading-relaxed text-gray-200">
-            <p className="animate__animated animate__fadeInUp animate__delay-0s">
-              Hi, I&apos;m Dylan.
-            </p>
+            <h1 className="text-xl sm:text-2xl font-semibold animate__animated animate__fadeInUp animate__delay-0s">
+              Hi, I&apos;m Dylan Wang.
+            </h1>
             <p className="animate__animated animate__fadeInUp animate__delay-1s">
               Currently working as a Software Engineer at{' '}
               <a 
@@ -90,32 +94,32 @@ export default function Home() {
             <a
               href="https://github.com/dwang1257"
               className="text-gray-400 hover:text-white transition-colors duration-200"
-              aria-label="Github"
+              aria-label="Dylan Wang on GitHub"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="me noopener noreferrer"
             >
               <Github size={24} />
             </a>
             <a
               href="mailto:dwang2022@gmail.com"
               className="text-gray-400 hover:text-white transition-colors duration-200"
-              aria-label="Email"
+              aria-label="Email Dylan Wang"
             >
               <Mail size={24} />
             </a>
             <a
               href="https://www.linkedin.com/in/dylanwang1/"
               className="text-gray-400 hover:text-white transition-colors duration-200"
-              aria-label="LinkedIn"
+              aria-label="Dylan Wang on LinkedIn"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="me noopener noreferrer"
             >
               <Linkedin size={24} />
             </a>
             <a
               href="/DylanWangResume.pdf"
               className="text-gray-400 hover:text-white transition-colors duration-200"
-              aria-label="Resume"
+              aria-label="Dylan Wang resume (PDF)"
               target="_blank"
               rel="noopener noreferrer"
             >
