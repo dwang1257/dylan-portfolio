@@ -1,10 +1,6 @@
 import "./globals.css";
 import { SITE_URL, PERSON } from "./site";
 
-// TODO: Cache Components adoption. Refactor this route so this opt-out can be removed.
-// See: https://nextjs.org/docs/app/guides/migrating-to-cache-components
-export const instant = false;
-
 const description =
   "Dylan Wang is a software engineer at IBM on the DB2 Analytics Accelerator team and a Computer Engineering alum of the University of Massachusetts Amherst. Previously a software engineering intern at Fidelity Investments and an ML researcher at UMass Lowell.";
 
