@@ -53,16 +53,25 @@ export default function Home() {
               .
             </p>
             <p className="animate__animated animate__fadeInUp animate__delay-3s">
-              Building Teach & Serve and constantly updating{' '}
-              <a 
-                href="https://uselightbulb.vercel.app/"
+              Building{' '}
+              <a
+                href="https://www.teachandserve.org/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-100 hover:text-white border-b border-gray-600 hover:border-gray-400 transition-all duration-200"
               >
-                Lightbulb
+                Teach & Serve
               </a>
-              .
+              {' '}and working on a{' '}
+              <a
+                href="https://github.com/dwang1257/Graphy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-100 hover:text-white border-b border-gray-600 hover:border-gray-400 transition-all duration-200"
+              >
+                graph visualizer
+              </a>
+              {' '}on the side.
             </p>
             <p className="animate__animated animate__fadeInUp animate__delay-4s">
               Computer Engineering Alumni at the{' '}
