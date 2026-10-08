@@ -1,4 +1,5 @@
 import 'animate.css';
+import Link from 'next/link';
 import { Github, Mail, Linkedin, FileText } from 'lucide-react';
 
 export default function Home() {
@@ -94,8 +95,8 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="px-8 sm:px-12 pb-8">
-        <div className="flex justify-between items-end">
-          <div className="flex gap-6 text-lg sm:text-xl animate__animated animate__fadeInUp animate__delay-5s">
+        <div className="flex flex-wrap justify-between items-end gap-4">
+          <div className="flex items-center gap-6 text-lg sm:text-xl animate__animated animate__fadeInUp animate__delay-5s">
             <a
               href="https://github.com/dwang1257"
               className="text-gray-400 hover:text-white transition-colors duration-200"
@@ -130,9 +131,15 @@ export default function Home() {
             >
               <FileText size={24} />
             </a>
+            <Link
+              href="/krillion"
+              className="text-gray-400 hover:text-white transition-colors duration-200 text-base sm:text-lg"
+            >
+              krillion
+            </Link>
           </div>
 
-          <div className="text-gray-400 text-base sm:text-lg animate__animated animate__fadeInUp animate__delay-5s">
+          <div className="ml-auto whitespace-nowrap text-gray-400 text-base sm:text-lg animate__animated animate__fadeInUp animate__delay-5s">
             SANTA CLARA, CA
           </div>
         </div>
