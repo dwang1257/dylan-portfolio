@@ -1,17 +1,16 @@
-import { createHash, createHmac, timingSafeEqual } from "node:crypto";
 import { cookies, headers } from "next/headers";
 import { Redis } from "@upstash/redis";
+import { OWNER_COOKIE, isOwnerToken, safeEqual } from "./session";
 
 export const PLAYERS = [
   { id: "dylan", name: "Dylan", start: 0 },
   { id: "akshay", name: "Akshay", start: 1 },
 ];
 
-export const OWNER_COOKIE = "krillion_owner";
 export const UPLOAD_PREFIX = "krillion/";
 export const CAPTION_LIMIT = 280;
 
-const SCORES_KEY = "krillion:scores";
+const RESULTS_KEY = "krillion:results";
 const SHOTS_KEY = "krillion:shots";
 const UNLOCK_ATTEMPTS = 10;
 const UNLOCK_WINDOW_SECONDS = 15 * 60;
@@ -26,27 +25,13 @@ function redis() {
   return client;
 }
 
-function safeEqual(a, b) {
-  const x = createHash("sha256").update(a).digest();
-  const y = createHash("sha256").update(b).digest();
-  return timingSafeEqual(x, y);
-}
-
-export function ownerToken() {
-  const passcode = process.env.KRILLION_PASSCODE;
-  if (!passcode) return null;
-  return createHmac("sha256", passcode).update("krillion-owner").digest("hex");
-}
-
 export function passcodeMatches(input) {
   const passcode = process.env.KRILLION_PASSCODE;
   return Boolean(passcode) && safeEqual(input, passcode);
 }
 
 export async function isOwner() {
-  const token = ownerToken();
-  const value = (await cookies()).get(OWNER_COOKIE)?.value;
-  return Boolean(token && value && safeEqual(value, token));
+  return isOwnerToken((await cookies()).get(OWNER_COOKIE)?.value);
 }
 
 export async function assertOwner() {
@@ -64,21 +49,27 @@ export async function consumeUnlockAttempt() {
   return attempts <= UNLOCK_ATTEMPTS;
 }
 
-export async function getScores() {
-  const stored = (await redis().hgetall(SCORES_KEY)) ?? {};
-  return PLAYERS.map(({ id, name, start }) => ({
-    id,
-    name,
-    score: Number(stored[id] ?? start),
-  }));
+export async function getDays() {
+  const stored = (await redis().hgetall(RESULTS_KEY)) ?? {};
+  const days = new Map();
+  for (const [field, score] of Object.entries(stored)) {
+    const [date, id] = field.split(":");
+    if (!days.has(date)) {
+      days.set(date, { date, ...Object.fromEntries(PLAYERS.map((player) => [player.id, null])) });
+    }
+    days.get(date)[id] = Number(score);
+  }
+  return [...days.values()].sort((a, b) => b.date.localeCompare(a.date));
 }
 
-export async function changeScore(id, delta) {
+export async function saveResults(date, scores) {
   const tx = redis().multi();
-  PLAYERS.forEach((player) => tx.hsetnx(SCORES_KEY, player.id, player.start));
-  tx.hincrby(SCORES_KEY, id, delta);
-  const results = await tx.exec();
-  if (results.at(-1) < 0) await redis().hset(SCORES_KEY, { [id]: 0 });
+  for (const [id, score] of Object.entries(scores)) {
+    const field = `${date}:${id}`;
+    if (score === null) tx.hdel(RESULTS_KEY, field);
+    else tx.hset(RESULTS_KEY, { [field]: score });
+  }
+  await tx.exec();
 }
 
 export async function getShots() {

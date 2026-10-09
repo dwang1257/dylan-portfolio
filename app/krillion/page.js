@@ -1,9 +1,11 @@
 import Link from "next/link";
 import { connection } from "next/server";
-import { getScores, getShots, isOwner } from "./store";
+import { PLAYERS, getDays, getShots, isOwner } from "./store";
+import { currentDay } from "./day";
 import Scoreboard from "./scoreboard";
 import Gallery from "./gallery";
 import OwnerControls from "./owner-controls";
+import Title from "./title";
 
 export const metadata = {
   title: "krillion",
@@ -12,8 +14,8 @@ export const metadata = {
 
 export default async function KrillionPage({ searchParams }) {
   await connection();
-  const [scores, shots, owner, params] = await Promise.all([
-    getScores(),
+  const [days, shots, owner, params] = await Promise.all([
+    getDays(),
     getShots(),
     isOwner(),
     searchParams,
@@ -29,8 +31,8 @@ export default async function KrillionPage({ searchParams }) {
       </header>
 
       <main className="flex-1 px-8 sm:px-12 pb-16 w-full max-w-6xl space-y-16 sm:space-y-20">
-        <h1 className="text-xl sm:text-2xl font-semibold text-gray-200">krillion</h1>
-        <Scoreboard scores={scores} owner={owner} />
+        <Title />
+        <Scoreboard players={PLAYERS} days={days} today={currentDay()} owner={owner} />
         <Gallery shots={shots} owner={owner} />
       </main>
     </div>

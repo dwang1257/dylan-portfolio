@@ -5,20 +5,20 @@ import { cookies } from "next/headers";
 import { refresh } from "next/cache";
 import { redirect } from "next/navigation";
 import { del, head } from "@vercel/blob";
+import { OWNER_COOKIE, OWNER_COOKIE_OPTIONS, ownerToken } from "./session";
 import {
   CAPTION_LIMIT,
-  OWNER_COOKIE,
   PLAYERS,
   UPLOAD_PREFIX,
   assertOwner,
-  changeScore,
   consumeUnlockAttempt,
   getShot,
-  ownerToken,
   passcodeMatches,
   removeShot,
+  saveResults,
   saveShot,
 } from "./store";
+import { currentDay } from "./day";
 
 function cleanCaption(caption) {
   return String(caption ?? "").trim().slice(0, CAPTION_LIMIT);
@@ -30,13 +30,7 @@ export async function unlock(_state, formData) {
   }
   const passcode = String(formData.get("passcode") ?? "");
   if (!passcodeMatches(passcode)) return { error: "Wrong passcode." };
-  (await cookies()).set(OWNER_COOKIE, ownerToken(), {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "lax",
-    path: "/",
-    maxAge: 60 * 60 * 24 * 365,
-  });
+  (await cookies()).set(OWNER_COOKIE, ownerToken(), OWNER_COOKIE_OPTIONS);
   redirect("/krillion");
 }
 
@@ -44,12 +38,22 @@ export async function lock() {
   (await cookies()).delete(OWNER_COOKIE);
 }
 
-export async function adjustScore(id, delta) {
+function cleanScore(value) {
+  if (value === null || value === undefined || String(value).trim() === "") return null;
+  const score = Number(value);
+  if (!Number.isInteger(score) || Math.abs(score) > 1e9) throw new Error("Invalid score");
+  return score;
+}
+
+export async function saveDay(date, scores) {
   await assertOwner();
-  if (!PLAYERS.some((player) => player.id === id) || ![1, -1].includes(delta)) {
-    throw new Error("Invalid score change");
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(date) || Number.isNaN(Date.parse(date)) || date > currentDay()) {
+    throw new Error("Invalid date");
   }
-  await changeScore(id, delta);
+  await saveResults(
+    date,
+    Object.fromEntries(PLAYERS.map((player) => [player.id, cleanScore(scores?.[player.id])]))
+  );
   refresh();
 }
 
