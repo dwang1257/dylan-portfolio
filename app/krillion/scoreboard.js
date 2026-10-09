@@ -61,34 +61,39 @@ export default function Scoreboard({ players, days, today, owner }) {
   const top = Math.max(...tallies.map((player) => player.total));
   const net = top - Math.min(...tallies.map((player) => player.total));
   const leader = tallies.find((player) => player.total === top);
-  const shownDays = expanded ? optimisticDays : optimisticDays.slice(0, RECENT_DAYS);
 
-  const labelClass = "text-base sm:text-lg text-gray-400";
-  const numberClass = "text-5xl sm:text-7xl font-semibold tabular-nums transition-colors duration-200";
+  const completeDays = optimisticDays.filter((day) => players.every((player) => day[player.id] !== null));
+  const sums = players.map((player) => ({
+    ...player,
+    sum: completeDays.reduce((total, day) => total + day[player.id], 0),
+  }));
+  const topSum = Math.max(...sums.map((player) => player.sum));
+  const pointGap = topSum - Math.min(...sums.map((player) => player.sum));
+  const pointLeader = sums.find((player) => player.sum === topSum);
+  const shownDays = expanded ? optimisticDays : optimisticDays.slice(0, RECENT_DAYS);
 
   return (
     <section aria-label="Score" className="group space-y-10">
-      <div className={`${COLUMNS} gap-y-2 items-start`}>
+      <div className="grid grid-cols-3 sm:grid-cols-[repeat(3,8rem)_auto] gap-x-6 sm:gap-x-16 gap-y-8 items-start">
         {tallies.map((player) => (
-          <div key={player.id} className={labelClass}>
-            {player.name}
-          </div>
-        ))}
-        <div className={labelClass}>Net</div>
-
-        {tallies.map((player) => (
-          <div
+          <Stat
             key={player.id}
-            className={`${numberClass} ${player.total === top ? "text-white" : "text-gray-500"}`}
-          >
-            {player.total}
-          </div>
+            label={player.name}
+            value={player.total}
+            tone={player.total === top ? "text-white" : "text-gray-500"}
+          />
         ))}
-        <div className={`${numberClass} text-gray-400`}>{net > 0 ? `+${net}` : "0"}</div>
-
-        <div className="col-start-3 text-sm sm:text-base text-gray-500">
-          {net > 0 ? `${leader.name} ahead` : "even"}
-        </div>
+        <Stat
+          label="Net"
+          value={net > 0 ? `+${net}` : "0"}
+          note={net > 0 ? `${leader.name} ahead` : "even"}
+        />
+        <Stat
+          label="Points"
+          value={pointGap > 0 ? `+${pointGap.toLocaleString("en-US")}` : "0"}
+          note={pointGap > 0 ? `${pointLeader.name} ahead` : "even"}
+          className="col-span-3 sm:col-span-1"
+        />
       </div>
 
       {owner && (
@@ -145,6 +150,18 @@ export default function Scoreboard({ players, days, today, owner }) {
         </div>
       )}
     </section>
+  );
+}
+
+function Stat({ label, value, note, tone = "text-gray-400", className = "" }) {
+  return (
+    <div className={`space-y-2 ${className}`}>
+      <div className="text-base sm:text-lg text-gray-400">{label}</div>
+      <div className={`text-5xl sm:text-7xl font-semibold tabular-nums whitespace-nowrap transition-colors duration-200 ${tone}`}>
+        {value}
+      </div>
+      {note && <div className="text-sm sm:text-base text-gray-500">{note}</div>}
+    </div>
   );
 }
 
