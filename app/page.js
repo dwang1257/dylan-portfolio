@@ -1,10 +1,12 @@
 import 'animate.css';
 import Link from 'next/link';
 import { Github, Mail, Linkedin, FileText } from 'lucide-react';
+import SkipAnimations from './skip-animations';
 
 export default function Home() {
   return (
     <div className="font-inter min-h-screen bg-black text-white flex flex-col">
+      <SkipAnimations />
       {/* Header */}
       <header className="p-8 sm:p-12">
         <div className="absolute top-8 right-8 sm:top-12 sm:right-12 text-gray-400 text-base sm:text-lg">
