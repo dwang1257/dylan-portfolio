@@ -1,5 +1,6 @@
-export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") || "https://dwang.vercel.app";
+export const SITE_HOST = "www.dwang.blog";
+
+export const SITE_URL = `https://${SITE_HOST}`;
 
 export const PERSON = {
   name: "Dylan Wang",

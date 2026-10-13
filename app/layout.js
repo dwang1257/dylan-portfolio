@@ -15,6 +15,11 @@ export const metadata = {
     "Dylan Wang",
     "Dylan Wang software engineer",
     "Dylan Wang IBM",
+    "Dylan Wang software engineer IBM",
+    "Dylan software engineer",
+    "Dylan Wang personal website",
+    "Dylan Wang Santa Clara",
+    "dwang.blog",
     "Dylan Wang UMass Amherst",
     "Dylan Wang UMass",
     "Dylan Wang portfolio",
@@ -77,6 +82,7 @@ const personSchema = {
     "@type": "Organization",
     name: "IBM",
     url: "https://www.ibm.com/",
+    sameAs: "https://en.wikipedia.org/wiki/IBM",
     department: {
       "@type": "Organization",
       name: "DB2 Analytics Accelerator",
@@ -88,6 +94,13 @@ const personSchema = {
       name: "University of Massachusetts Amherst",
       url: "https://www.umass.edu/",
       sameAs: "https://en.wikipedia.org/wiki/University_of_Massachusetts_Amherst",
+    },
+  ],
+  affiliation: [
+    {
+      "@type": "CollegeOrUniversity",
+      name: "University of Massachusetts Lowell",
+      url: "https://www.uml.edu/",
     },
   ],
   hasOccupation: {
@@ -105,6 +118,7 @@ const personSchema = {
     "Software Engineering",
     "Distributed Systems",
     "Databases",
+    "IBM Db2",
     "Machine Learning",
     "Computer Engineering",
     "Full Stack Development",

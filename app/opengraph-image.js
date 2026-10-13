@@ -30,7 +30,7 @@ export default function OpengraphImage() {
           Computer Engineering, UMass Amherst
         </div>
         <div style={{ fontSize: 28, color: "#6b7280", marginTop: 56 }}>
-          dwang.vercel.app
+          dwang.blog
         </div>
       </div>
     ),
