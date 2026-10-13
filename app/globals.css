@@ -17,3 +17,7 @@ body {
   color: var(--foreground);
   font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
 }
+
+.skip-animations .animate__animated {
+  animation: none;
+}
