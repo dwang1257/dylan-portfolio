@@ -10,7 +10,7 @@ import {
   useState,
   useTransition,
 } from "react";
-import { upload } from "@vercel/blob/client";
+import { uploadPresigned } from "@vercel/blob/client";
 import { ChevronLeft, ChevronRight, Trash2, X } from "lucide-react";
 import { addShot, deleteShot, updateCaption } from "./actions";
 
@@ -55,7 +55,7 @@ export default function Gallery({ shots, owner }) {
         for (const [index, file] of images.entries()) {
           setStatus(images.length > 1 ? `Uploading ${index + 1} of ${images.length}…` : "Uploading…");
           const { width, height } = await measure(file);
-          const blob = await upload(`krillion/screenshot.${EXTENSIONS[file.type]}`, file, {
+          const blob = await uploadPresigned(`krillion/screenshot.${EXTENSIONS[file.type]}`, file, {
             access: "public",
             handleUploadUrl: "/api/krillion/upload",
             contentType: file.type,
